@@ -36,10 +36,22 @@ jobs:
 workflows:
     build-and-test:
       jobs:
-        - build
+        - build:
+          filters:
+            branches:
+              only:
+                - master
         - test_server:
+            filters:
+              branches:
+                only:
+                  - master
             requires:
               - build
         - test_client:
+            filters:
+              branches:
+                only:
+                  - master
             requires:
               - build
